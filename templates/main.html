@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OYGHS Final</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group select, .form-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-clear {
+            background-color: #6c757d;
+        }
+        .btn-clear:hover {
+            background-color: #5a6268;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+        <!-- Section 1 -->
+        <div class="section" id="section1">
+            <h2>Search Doctors with Name</h2>
+            <form id="form1" method="POST" action="/doctors">
+            <div class="form-group">
+                <label for="dropdown1">Doctor Name</label>
+                <select id="dropdown1" name="name">
+                    <option value="">Select an option</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-search"></i> Search</button>
+            <button type="button" class="btn btn-clear" onclick="clearSection('section1')"><i class="fas fa-times"></i> Clear</button>
+            </form>
+
+            <table id="resultTable1" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Doctor_ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Phone</th>
+                    <th>License</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Search results will be inserted here -->
+            </tbody>
+            </table>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section" id="section2">
+            <h2>Search Medication with Name</h2>
+            <form id="form2" method="post" action="/medications">
+            <div class="form-group">
+                <label for="dropdown2">Medication Name</label>
+                <select id="dropdown2" name="name">
+                    <option value="">Select an option</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-search"></i> Search</button>
+            <button type="button" class="btn btn-clear" onclick="clearSection('section2')"><i class="fas fa-times"></i> Clear</button>
+            </form>
+            <table id="resultTable2" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Side Effect</th>
+                        <th>Dosage (mg)</th>
+                        <th>frequency (per day)</th>
+                        <th>contraindication</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Search results will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add more sections as needed -->
+        <!-- Section 3 -->
+        <div class="section" id="section3">
+            <h2>Search Patients with Name</h2>
+            <form id="form3" method="post" action="/patients">
+            <div class="form-group">
+                <label for="dropdown3">Patient Name</label>
+                <select id="dropdown3" name="name">
+                    <option value="">Select an option</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-search"></i> Search</button>
+            <button type="button" class="btn btn-clear" onclick="clearSection('section3')"><i class="fas fa-times"></i> Clear</button>
+            </form>
+            <table id="resultTable3" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Birth</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Search results will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section" id="section4">
+            <h2>Search Prescription</h2>
+            <form id="form4" method="post" action="/prescriptions">
+            <div class="form-group">
+                <label for="dropdown4">Patient Name</label>
+                <select id="dropdown4" name="name">
+                    <option value="">Select an option</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-search"></i> Search</button>
+            <button type="button" class="btn btn-clear" onclick="clearSection('section4')"><i class="fas fa-times"></i> Clear</button>
+            </form>
+            <table id="resultTable4" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient Name</th>
+                        <th>Medication Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Search results will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section" id="section5">
+            <h2>Search Prescription</h2>
+            <form id="form5" method="post" action="/records">
+            <div class="form-group">
+                <label for="dropdown5">Patient Name</label>
+                <select id="dropdown5" name="name">
+                    <option value="">Select an option</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-search"></i> Search</button>
+            <button type="button" class="btn btn-clear" onclick="clearSection('section5')"><i class="fas fa-times"></i> Clear</button>
+            </form>
+            <table id="resultTable5" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient Name</th>
+                        <th>Doctor Name</th>
+                        <th>Diagnosis</th>
+                        <th>Prescription ID</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Search results will be inserted here -->
+                </tbody>
+            </table>
+
+            <table id="resultTable6" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>Prescription ID</th>
+                        <th>Patient Name</th>
+                        <th>Medication Name</th>
+                        <th>Dosage (mg)</th>
+                        <th>Frequency (per day)</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Search results will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+</div>
+
+<script>
+    function clearSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        const table = section.querySelector('table');
+        table.style.display = 'none';
+        table.querySelector('tbody').innerHTML = '';
+    }
+
+    document.getElementById('form1').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        console.log(formData);
+        fetch(this.action, {
+            method: this.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Assuming the server returns the results in JSON format
+            updateTable('resultTable1', data.result);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('form2').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        console.log(formData);
+        fetch(this.action, {
+            method: this.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Assuming the server returns the results in JSON format
+            updateTable('resultTable2', data.result);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('form3').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        console.log(formData);
+        fetch(this.action, {
+            method: this.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Assuming the server returns the results in JSON format
+            updateTable('resultTable3', data.result);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('form4').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        console.log(formData);
+        fetch(this.action, {
+            method: this.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Assuming the server returns the results in JSON format
+            updateTable('resultTable4', data.result);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    document.getElementById('form5').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        console.log(formData);
+        fetch(this.action, {
+            method: this.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Assuming the server returns the results in JSON format
+            updateTable('resultTable5', data.result1);
+            updateTable('resultTable6', data.result2);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+
+    function updateTable(tableId, results) {
+        const table = document.getElementById(tableId);
+        const tbody = table.querySelector('tbody');
+        tbody.innerHTML = '';
+        results.forEach(row => {
+            const tr = document.createElement('tr');
+            row.forEach(cell => {
+                const td = document.createElement('td');
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+        table.style.display = '';
+    }
+
+    function getDoctorNames() {
+        const formData = new FormData();
+        formData.append('name', 'all');
+
+        fetch('/doctors', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(response => {
+            const dropdown = document.getElementById('dropdown1');
+            dropdown.innerHTML = `<option value='all_cols'>All</option>`;
+            response.result.forEach(elem => {
+                dropdown.innerHTML += `
+                    <option value='${elem}'>${elem}</option>
+                `;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function getMedicationNames() {
+        const formData = new FormData();
+        formData.append('name', 'all');
+
+        fetch('/medications', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(response => {
+            const dropdown = document.getElementById('dropdown2');
+            dropdown.innerHTML = `<option value='all_cols'>All</option>`;
+            response.result.forEach(elem => {
+                dropdown.innerHTML += `
+                    <option value='${elem}'>${elem}</option>
+                `;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function getPatientNames() {
+        const formData = new FormData();
+        formData.append('name', 'all');
+
+        fetch('/patients', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(response => {
+            const dropdown = document.getElementById('dropdown3');
+            dropdown.innerHTML = `<option value='all_cols'>All</option>`;
+            response.result.forEach(elem => {
+                dropdown.innerHTML += `
+                    <option value='${elem}'>${elem}</option>
+                `;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function getPatientNamesInPrescriptions() {
+        const formData = new FormData();
+        formData.append('name', 'all');
+
+        fetch('/prescriptions', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(response => {
+            const dropdown = document.getElementById('dropdown4');
+            dropdown.innerHTML = `<option value='all_cols'>All</option>`;
+            response.result.forEach(elem => {
+                dropdown.innerHTML += `
+                    <option value='${elem}'>${elem}</option>
+                `;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function getPatientNamesInRecords() {
+        const formData = new FormData();
+        formData.append('name', 'all');
+
+        fetch('/records', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(response => {
+            const dropdown = document.getElementById('dropdown5');
+            dropdown.innerHTML = `<option value='all_cols'>All</option>`;
+            response.result1.forEach(elem => {
+                dropdown.innerHTML += `
+                    <option value='${elem}'>${elem}</option>
+                `;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function initDropdowns() {
+        getDoctorNames();
+        setTimeout(getMedicationNames, 300);
+        setTimeout(getPatientNames, 600);
+        setTimeout(getPatientNamesInPrescriptions, 900);
+        setTimeout(getPatientNamesInRecords, 1200);
+    }
+
+    initDropdowns();
+
+
+</script>
+
+</body>
+</html>
